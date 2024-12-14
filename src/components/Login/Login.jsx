@@ -72,7 +72,7 @@ export default function Login() {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <div className="py-6 max-w-lg mx-auto p-5 sm:p-0">
+      <div className="py-6 max-w-lg mx-auto md:mt-20 p-5 sm:p-0 h-[550px] w-[50%]">
         {error && (
           <div
             class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -81,7 +81,7 @@ export default function Login() {
             {error}
           </div>
         )}
-        <h2 className="text-3xl font-bold mb-6 text-green-600">Login Now</h2>
+        <h2 className="text-3xl font-bold mb-6 text-green-600 dark:text-green-400">Login Now</h2>
         <form onSubmit={formik.handleSubmit}>
           <div className="relative z-0 w-full mb-5 group">
             <input
@@ -148,7 +148,7 @@ export default function Login() {
                 "Submit"
               )}
             </button>
-            <p className="pl-2">
+            <p className="pl-2 dark:text-white">
               didn't have account yet?
               <span className="font-semibold">
                 <Link to={"/register"}>Register now</Link>

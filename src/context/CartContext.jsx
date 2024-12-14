@@ -1,14 +1,13 @@
 import axios from "axios";
 import { createContext, useEffect } from "react";
 
-export let cartContext = createContext();
+export let  cartContext = createContext();
 
 export default function CartContextProvider(props) {
   let headers = {
     token: localStorage.getItem("userToken"),
   };
 
-  // let headers = localStorage.getItem("userToken");
   function getLogedUserCart() {
     return axios
       .get("https://ecommerce.routemisr.com/api/v1/cart", {
@@ -18,7 +17,7 @@ export default function CartContextProvider(props) {
       .catch((error) => error);
   }
   //add to cart
-  function addProductToCart(productId) {
+  async function  addProductToCart(productId) {
     return axios
       .post(
         `https://ecommerce.routemisr.com/api/v1/cart`,

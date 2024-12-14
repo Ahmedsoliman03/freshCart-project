@@ -6,6 +6,7 @@ import LoadingScreen from "../Loading/Loading";
 import { cartContext } from "../../context/CartContext";
 import { toast, ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet";
+import { useWishlist } from "../../context/wishlistContext";
 
 export default function ProductDetails() {
   let { addProductToCart } = useContext(cartContext);
@@ -16,6 +17,10 @@ export default function ProductDetails() {
   const [isLoading, setLoading] = useState(false);
   const [isLoadingDetails, setLoadingDetails] = useState(false);
   const [currentproductId, setCurrentProductId] = useState(0);
+  const [wishlistLoading, setWishlistLoading] = useState(false);
+  const [currentWishlistId, setCurrentWishlistId] = useState(0);
+
+  const { addToWishlist } = useWishlist();
 
   function getProductDetails(id) {
     axios
@@ -53,6 +58,22 @@ export default function ProductDetails() {
     getProductDetails(id);
     getRelatedProduct(category);
   }, [id]);
+  async function handleAddToWishlist(productId) {
+    setWishlistLoading(true);
+    setCurrentWishlistId(productId);
+    if (addToWishlist) {
+      const resFlag = await addToWishlist(productId);
+      if (resFlag) {
+        toast.success("Product added to wishlist successfully");
+        setWishlistLoading(false);
+      } else {
+        toast.error("Error adding product to wishlist");
+        setWishlistLoading(false);
+      }
+    } else {
+      console.error("addToWishlist function is not defined in WishlistContext");
+    }
+  }
   let settings = {
     dots: true,
     infinite: true,
@@ -69,6 +90,7 @@ export default function ProductDetails() {
     slidesToScroll: 2,
     arrows: false,
   };
+
   return (
     <>
       <Helmet>
@@ -89,14 +111,14 @@ export default function ProductDetails() {
             </Slider>
           </div>
           <div className="w-3/4 p-6">
-            <h1 className="text-lg text-gray-950 font-normal">
+            <h1 className="text-lg text-gray-950 dark:text-white font-normal">
               {productDetails?.title}
             </h1>
-            <p className="text-gray-600 font-light mt-4">
+            <p className="text-gray-600 dark:text-white font-light mt-4">
               {productDetails?.description}
             </p>
             <div className="flex justify-between my-4">
-              <span className="text-gray-500 text-sm">
+              <span className="text-gray-500 dark:text-white text-sm">
                 {productDetails?.price} EGP
               </span>
               <span>
@@ -137,14 +159,14 @@ export default function ProductDetails() {
                       src={product.imageCover}
                       alt={product.title}
                     />
-                    <span className="block font-light text-green-600">
+                    <span className="block font-light text-green-600 dark:text-green-400">
                       {product.category.name}
                     </span>
-                    <h3 className="mt-2 text-lg font-normal text-gray-600 mb-4">
+                    <h3 className="mt-2 text-lg font-normal text-gray-600 dark:text-white mb-4">
                       {product.title.split(" ").slice(0, 2).join(" ")}
                     </h3>
                     <div className="flex justify-between">
-                      <span className="text-gray-500 text-sm">
+                      <span className="text-gray-500 dark:text-white text-sm">
                         {product.price} EGP
                       </span>
                       <span>
@@ -153,6 +175,19 @@ export default function ProductDetails() {
                       </span>
                     </div>
                   </Link>
+                  <button
+                    disabled={
+                      wishlistLoading && currentWishlistId == product.id
+                    }
+                    onClick={() => handleAddToWishlist(product._id)}
+                    className="disabled:bg-gray-400 mt-2 p-2 rounded-lg bg-yellow-200  text-black hover:bg-yellow-200 w-full"
+                  >
+                    {wishlistLoading && currentWishlistId == product.id ? (
+                      <i className="fa-solid fa-spinner fa-spin-pulse"></i>
+                    ) : (
+                      "Add to Wishlist"
+                    )}
+                  </button>
                   <button
                     disabled={currentproductId == product.id && isLoading}
                     className="btn disabled:bg-gray-400"
@@ -164,6 +199,7 @@ export default function ProductDetails() {
                       "Add to cart"
                     )}
                   </button>
+                  
                 </div>
               );
             })}

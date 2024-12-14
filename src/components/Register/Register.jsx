@@ -43,7 +43,7 @@ export default function Register() {
       .string()
       .matches(
         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-        "password must be minimum eight characters, at least one letter and one number"
+          "password must be minimum eight characters, at least one letter and one number"
       )
 
       .required("password is required"),

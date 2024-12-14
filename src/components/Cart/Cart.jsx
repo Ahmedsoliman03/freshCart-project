@@ -4,6 +4,7 @@ import { cartContext } from "../../context/CartContext";
 import LoadingScreen from "../Loading/Loading";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 export default function Cart() {
   const [cartItems, setCartItems] = useState(null);
   const [loading, setLoading] = useState(false); // Main Loading
@@ -23,8 +24,11 @@ export default function Cart() {
   //Add to cart
   async function getCartItems() {
     let response = await getLogedUserCart();
+    console.log(response);
+    
     setCartItems(response.data.data);
     setLoading(true);
+    // toast.success("Product added successfuly")
     setClearCart(false);
 
     if (response.data.data.products.length == 0) {
@@ -80,14 +84,14 @@ export default function Cart() {
         </div>
       ) : loading ? (
         <div className="relative sm:overflow-x-hidden overflow-x-auto sm:rounded-lg">
-          <h2 className="text-3xl text-green-600 py-5 text-center">
+          <h2 className="text-3xl text-green-600 dark:text-green-400 py-5 text-center">
             Shopping Cart
           </h2>
           <div className="flex flex-wrap justify-between w-[50%] mx-auto flex-col items-center md:flex-row">
-            <h3 className="text-lg font-light text-slate-600 py-5 text-center">
+            <h3 className="text-lg font-light text-slate-600 dark:text-white py-5 text-center">
               Total Cart Price : {cartItems?.totalCartPrice} EGP
             </h3>
-            <h3 className="text-lg font-light text-slate-600 py-5 text-center">
+            <h3 className="text-lg font-light text-slate-600 dark:text-white py-5 text-center">
               Number of products : {cartItems?.products.length}
             </h3>
             <div className=" flex justify-start gap-2 w-full m-3">

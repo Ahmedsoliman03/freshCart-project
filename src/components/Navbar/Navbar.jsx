@@ -4,12 +4,25 @@ import logo from "../../assets/images/freshcart-logo.svg";
 import style from "./Navbar.module.css";
 import { UserContext } from "../../context/UserContext";
 import { cartContext } from "../../context/CartContext";
+import LanguageSwitcher from "./../Language/LanguageSwitcher";
 
 export default function Navbar() {
   const [numOfItems, setNumOfItems] = useState();
   let { userLogin, setUserLogin } = useContext(UserContext);
-  let { getLogedUserCart, addProductToCart } = useContext(cartContext);
-
+  let { getLogedUserCart, addProductToCart  } = useContext(cartContext);
+  //Dark mode
+  const [theme, setTheme] = useState("light");
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+  function handleThemeSwitch() {
+    setTheme(theme === "light" ? "dark" : "light");
+  }
+  /////////////
   async function numOfCart() {
     let { data } = await getLogedUserCart();
     setNumOfItems(data.numOfCartItems);
@@ -18,6 +31,8 @@ export default function Navbar() {
 
   useEffect(() => {
     numOfCart();
+    console.log(numOfItems , "useEffect");
+    
   }, []);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -152,6 +167,9 @@ export default function Navbar() {
                   WishList
                 </NavLink>
               </li>
+              <li>
+                
+              </li>
             </ul>
             <ul className="flex flex-col lg:flex-row items-center mt-4 lg:mt-0">
               {userLogin ? (
@@ -196,6 +214,7 @@ export default function Navbar() {
                       Log out
                     </span>
                   </li>
+                  
                 </>
               ) : (
                 " "
@@ -207,8 +226,25 @@ export default function Navbar() {
                 <i className="fab fa-youtube mx-2"></i>
                 <i className="fab fa-twitter mx-2"></i>
               </li>
+              <li>
+              <label className="inline-flex items-center cursor-pointer">
+  <input
+    type="checkbox"
+    className="sr-only peer"
+    onChange={handleThemeSwitch}
+    checked={theme === "dark"}
+  />
+     <div
+                className={`relative w-11 h-6 bg-gray-200 outline-none peer-focus:ring-green-300 dark:peer-focus:ring-green-800 
+              rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full border-none after:content-[''] 
+                after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-green-600`}
+              ></div>
+</label>
+              </li>
             </ul>
+          
           </div>
+          
         </div>
       </nav>
     </>

@@ -129,8 +129,10 @@ let routing = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={routing}></RouterProvider>
-      <ReactQueryDevtools initialIsOpen="false" />
+      <div className="dark:bg-black">
+        <RouterProvider router={routing}></RouterProvider>
+        <ReactQueryDevtools initialIsOpen="false" />
+      </div>
     </>
   );
 }

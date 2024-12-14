@@ -21,7 +21,7 @@ export function WishlistProvider({ children }) {
         "https://ecommerce.routemisr.com/api/v1/wishlist",
         {
           headers: {
-            token: localStorage.getItem("token"),
+            token: localStorage.getItem("userToken"),
           },
         }
       );

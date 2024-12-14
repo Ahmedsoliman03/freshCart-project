@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import LoadingScreen from "../Loading/Loading";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 function WishlistProduct({ product, productRemove }) {
   return (
@@ -10,7 +11,7 @@ function WishlistProduct({ product, productRemove }) {
       <h2 className="text-xl font-semibold">
         {product.title.split(" ").slice(0, 2).join(" ")}
       </h2>
-      <p className="text-gray-700">Price: ${product.price}</p>
+      <p className="text-gray-700 dark:text-white">Price: ${product.price}</p>
       <button
         onClick={() => productRemove(product._id)}
         className="mt-2 text-red-500 hover:text-red-700"
@@ -24,7 +25,7 @@ function WishlistProduct({ product, productRemove }) {
 export default function WishList() {
   const [wishlist, setWishlist] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [t, i18n] = useTranslation();
   useEffect(() => {
     getUserWishlist();
   }, []);
@@ -76,12 +77,12 @@ export default function WishList() {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <div className="mx-auto container px-4 md:px-6 2xl:px-0 py-12 flex flex-col ">
+        <div className="items-center container px-4 md:px-6 2xl:px-0 py-12 flex flex-col ">
           <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white">
-            Favourites
+            {t("Favourites")}
           </h1>
           <p className="text-2xl tracking-tight leading-6 text-gray-600 dark:text-white">
-            {wishlist.length} items
+            {wishlist.length} {t("items")}
           </p>
           <div className="flex flex-wrap gap-x-2 mt-4 w-full justify-center">
             {wishlist.map((product) => (

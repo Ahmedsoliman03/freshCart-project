@@ -67,8 +67,8 @@ export default function CategoriesSlider() {
   return (
     <>
       <div className="py-5">
-        <h2 className="py-4 text-gray-900 font-light text-xl">
-          Shop popular Categories
+        <h2 className="py-4 text-green-600 dark:text-green-400 text-center font-semibold text-3xl ">
+          Shop Popular Categories
         </h2>
         <Slider {...settings}>
           {categories.map((category, index) => {
