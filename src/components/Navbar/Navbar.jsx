@@ -9,7 +9,7 @@ import LanguageSwitcher from "./../Language/LanguageSwitcher";
 export default function Navbar() {
   const [numOfItems, setNumOfItems] = useState();
   let { userLogin, setUserLogin } = useContext(UserContext);
-  let { getLogedUserCart, addProductToCart  } = useContext(cartContext);
+  let { getLogedUserCart, addProductToCart, cart } = useContext(cartContext);
   //Dark mode
   const [theme, setTheme] = useState("light");
   useEffect(() => {
@@ -31,8 +31,8 @@ export default function Navbar() {
 
   useEffect(() => {
     numOfCart();
-    console.log(numOfItems , "useEffect");
-    
+    console.log(numOfItems, "useEffect");
+
   }, []);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -114,9 +114,8 @@ export default function Navbar() {
             </button>
           </div>
           <div
-            className={`${
-              isMobileMenuOpen ? "block" : "hidden"
-            } lg:flex flex-col lg:flex-row items-center w-full lg:w-auto`}
+            className={`${isMobileMenuOpen ? "block" : "hidden"
+              } lg:flex flex-col lg:flex-row items-center w-full lg:w-auto`}
           >
             <ul className="flex flex-col items-center lg:hidden ">
               <li className="py-2">
@@ -168,7 +167,7 @@ export default function Navbar() {
                 </NavLink>
               </li>
               <li>
-                
+
               </li>
             </ul>
             <ul className="flex flex-col lg:flex-row items-center mt-4 lg:mt-0">
@@ -198,24 +197,17 @@ export default function Navbar() {
               )}
               {userLogin ? (
                 <>
-                  <Link to={"/cart"}>
-                    {" "}
-                    <li className="py-2">
-                      <i className="fa-solid fa-cart-shopping text-green-600 fa-xl relative">
-                        <p className="text-white text-[14px] absolute top-[-3px] right-[25%]">
-                          {numOfItems}
-                        </p>
-                      </i>
-                    </li>
-                  </Link>
+                  <li className='py-2'>
+                    <NavLink to={'/cart'} className='mx-2 relative text-lg text-slate-900 font-light cursor-pointer' >
+                      <i class="fa-solid fa-cart-shopping text-2xl"></i>
+                      <span className='bg-green-600 text-white px-1 absolute text-xs top-[-3px] right-[-5px] rounded-2xl'>{cart?.numOfCartItems}</span>
 
-                  <li className="py-2 cursor-pointer" onClick={logOut}>
-                    <span className="font-light mx-2 text-slate-900 text-lg ">
-                      Log out
-                    </span>
+                    </NavLink>
                   </li>
-                  
+                  <li onClick={logOut} className='py-2'> <span className='mx-2 text-lg text-slate-900 font-light cursor-pointer'  >Logout</span></li>
+
                 </>
+
               ) : (
                 " "
               )}
@@ -227,24 +219,24 @@ export default function Navbar() {
                 <i className="fab fa-twitter mx-2"></i>
               </li>
               <li>
-              <label className="inline-flex items-center cursor-pointer">
-  <input
-    type="checkbox"
-    className="sr-only peer"
-    onChange={handleThemeSwitch}
-    checked={theme === "dark"}
-  />
-     <div
-                className={`relative w-11 h-6 bg-gray-200 outline-none peer-focus:ring-green-300 dark:peer-focus:ring-green-800 
+                <label className="inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="sr-only peer"
+                    onChange={handleThemeSwitch}
+                    checked={theme === "dark"}
+                  />
+                  <div
+                    className={`relative w-11 h-6 bg-gray-200 outline-none peer-focus:ring-green-300 dark:peer-focus:ring-green-800 
               rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full border-none after:content-[''] 
                 after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-green-600`}
-              ></div>
-</label>
+                  ></div>
+                </label>
               </li>
             </ul>
-          
+
           </div>
-          
+
         </div>
       </nav>
     </>

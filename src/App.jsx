@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
@@ -19,6 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ShippingAddress from "./components/shippingAddress/shippingAddress";
 import Allorders from "./components/AllOrders/Allorders";
 import Wishlist from "./components/wishList/wishList";
+import CartContextProvider from "./context/CartContext";
 
 let routing = createBrowserRouter([
   {
@@ -130,8 +130,10 @@ function App() {
   return (
     <>
       <div className="dark:bg-black">
-        <RouterProvider router={routing}></RouterProvider>
+        <CartContextProvider>
+          <RouterProvider router={routing}></RouterProvider>
         <ReactQueryDevtools initialIsOpen="false" />
+        </CartContextProvider>
       </div>
     </>
   );

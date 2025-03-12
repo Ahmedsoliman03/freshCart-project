@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet";
 import { useWishlist } from "../../context/wishlistContext";
 
 export default function RecentProducts() {
-  let { addProductToCart } = useContext(cartContext);
+  let { addProductToCart, setCart } = useContext(cartContext);
   const [loading, setLoading] = useState(false);
   const [currentProductId, setCurrentProductId] = useState(0);
   const [currentWishlistId, setCurrentWishlistId] = useState(0);
@@ -32,7 +32,9 @@ export default function RecentProducts() {
     setLoading(true);
     let response = await addProductToCart(productId);
     console.log(response);
+
     if (response.data.status === "success") {
+      setCart(response.data);
       toast.success(response.data.message);
       setLoading(false);
     } else {
@@ -64,7 +66,7 @@ export default function RecentProducts() {
   }
   return (
     <>
-      <h2 className="text-center text-green-600 dark:text-green-400 mt-4 font-semibold text-3xl">
+      <h2 className="text-center text-green-600 mt-4 font-semibold text-3xl">
         All Products
       </h2>
       <div className="m-4">
@@ -94,14 +96,14 @@ export default function RecentProducts() {
                       src={product.imageCover}
                       alt={product.title}
                     />
-                    <span className="block font-light  text-green-600 dark:text-green-400">
+                    <span className="block font-light text-green-600">
                       {product.category.name}
                     </span>
-                    <h3 className="mt-2 text-lg font-normal text-gray-600 dark:text-white mb-4">
+                    <h3 className="mt-2 text-lg font-normal text-gray-600 mb-4">
                       {product.title.split(" ").slice(0, 2).join(" ")}
                     </h3>
                     <div className="flex justify-between">
-                      <span className="text-gray-500 dark:text-white text-sm">
+                      <span className="text-gray-500 text-sm">
                         {product.price} EGP
                       </span>
                       <span>
@@ -115,7 +117,7 @@ export default function RecentProducts() {
                       wishlistLoading && currentWishlistId == product.id
                     }
                     onClick={() => handleAddToWishlist(product._id)}
-                    className="disabled:bg-gray-400 mt-2 p-2 rounded-lg bg-yellow-200  text-black hover:bg-yellow-200 w-full"
+                    className="disabled:bg-gray-400 mt-2 p-2 rounded-lg bg-blue-500  text-black hover:bg-blue-500 w-full"
                   >
                     {wishlistLoading && currentWishlistId == product.id ? (
                       <i className="fa-solid fa-spinner fa-spin-pulse"></i>

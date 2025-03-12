@@ -78,10 +78,10 @@ export default function WishList() {
         <LoadingScreen />
       ) : (
         <div className="items-center container px-4 md:px-6 2xl:px-0 py-12 flex flex-col ">
-          <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white">
+          <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-green-600 ">
             {t("Favourites")}
           </h1>
-          <p className="text-2xl tracking-tight leading-6 text-gray-600 dark:text-white">
+          <p className="text-2xl tracking-tight leading-6 text-green-500 dark:text-green-400">
             {wishlist.length} {t("items")}
           </p>
           <div className="flex flex-wrap gap-x-2 mt-4 w-full justify-center">
