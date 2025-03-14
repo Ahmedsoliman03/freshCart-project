@@ -78,7 +78,9 @@ export default function Cart() {
       </Helmet>
       {clearCart ? (
         <div className="h-screen flex justify-center items-center">
-          <h2 className="text-green-600 mt-4 font-semibold text-3xl ">Cart is Empty</h2>
+          <h2 className="text-green-600 mt-4 font-semibold text-3xl ">
+            Cart is Empty
+          </h2>
         </div>
       ) : loading ? (
         <div className="relative sm:overflow-x-hidden overflow-x-auto sm:rounded-lg">
