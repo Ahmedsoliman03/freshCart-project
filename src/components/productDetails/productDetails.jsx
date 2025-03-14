@@ -89,6 +89,43 @@ export default function ProductDetails() {
     slidesToShow: 6,
     slidesToScroll: 2,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 450,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -99,7 +136,7 @@ export default function ProductDetails() {
       <ToastContainer /> {/* Add this component */}
       {isLoadingDetails ? (
         <div className="row">
-          <div className="w-1/4">
+          <div className="w-1/4 sliderDetails">
             <Slider {...settings}>
               {productDetails?.images?.map((image) => {
                 return (
@@ -145,7 +182,7 @@ export default function ProductDetails() {
         </div>
       )}
       <div className="row">
-        <div className="w-full  p-4">
+        <div className="w-full  p-4 sliderDetails2 ">
           <Slider {...settings2}>
             {relatedProduct.map((product, index) => {
               return (
@@ -199,7 +236,6 @@ export default function ProductDetails() {
                       "Add to cart"
                     )}
                   </button>
-                  
                 </div>
               );
             })}

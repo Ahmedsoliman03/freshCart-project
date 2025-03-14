@@ -1,0 +1,8 @@
+@media screen and (max-width:500px) {
+   .sliderDetails .slick-dots {
+            top: 130px !important;
+        }
+   .sliderDetails2 .slick-dots {
+            bottom: -50px;
+        }
+}
