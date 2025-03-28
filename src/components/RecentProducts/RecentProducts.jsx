@@ -41,7 +41,6 @@ export default function RecentProducts() {
     } catch (error) {
       console.error("Error adding product to cart:", error);
     } finally {
-      // Always reset loading state regardless of success or failure
       setLoading(false);
     }
   }
@@ -50,7 +49,6 @@ export default function RecentProducts() {
     product.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  /////
   const { addToWishlist } = useWishlist();
   async function handleAddToWishlist(productId) {
     setWishlistLoading(true);
@@ -74,14 +72,13 @@ export default function RecentProducts() {
       console.error("Error adding to wishlist:", error);
       toast.error("Failed to add product to wishlist");
     } finally {
-      // Always reset wishlist loading state regardless of outcome
       setWishlistLoading(false);
     }
   }
 
   return (
     <>
-      <h2 className="text-center text-green-600 mt-4 font-semibold text-3xl">
+      <h2 className="text-center text-green-600 dark:text-yellow-400 mt-4 font-semibold text-3xl">
         All Products
       </h2>
       <div className="m-4">
@@ -90,7 +87,7 @@ export default function RecentProducts() {
           placeholder="Search products..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="border border-gray-300 p-2 rounded w-full"
+          className="border border-gray-300 dark:border-gray-600 p-2 rounded w-full dark:bg-gray-800 dark:text-white"
         />
       </div>
 
@@ -102,7 +99,7 @@ export default function RecentProducts() {
                 key={indx}
                 className="main w-full sm:w-1/3 md:w-1/4 lg:w-1/6 p-4"
               >
-                <div className="product">
+                <div className="product dark:bg-gray-800 dark:p-4 dark:rounded-lg">
                   <Link
                     to={`/productdetails/${product.id}/${product.category.name}`}
                   >
@@ -111,17 +108,17 @@ export default function RecentProducts() {
                       src={product.imageCover || "/placeholder.svg"}
                       alt={product.title}
                     />
-                    <span className="block font-light text-green-600">
+                    <span className="block font-light text-green-600 dark:text-yellow-400">
                       {product.category.name}
                     </span>
-                    <h3 className="mt-2 text-lg font-normal text-gray-600 mb-4">
+                    <h3 className="mt-2 text-lg font-normal text-gray-600 dark:text-white mb-4">
                       {product.title.split(" ").slice(0, 2).join(" ")}
                     </h3>
                     <div className="flex justify-between">
-                      <span className="text-gray-500 text-sm">
+                      <span className="text-gray-500 dark:text-gray-300 text-sm">
                         {product.price} EGP
                       </span>
-                      <span>
+                      <span className="dark:text-white">
                         <i className="fa-solid fa-star text-[#FFD43B]"></i>
                         {product.ratingsAverage}
                       </span>
@@ -132,7 +129,7 @@ export default function RecentProducts() {
                       wishlistLoading && currentWishlistId == product.id
                     }
                     onClick={() => handleAddToWishlist(product._id)}
-                    className="disabled:bg-gray-400 mt-2 p-2 rounded-lg bg-blue-500 text-black hover:bg-blue-500 w-full"
+                    className="disabled:bg-gray-400 mt-2 p-2 rounded-lg bg-blue-500 dark:bg-yellow-500 text-black dark:text-gray-900 hover:bg-blue-600 dark:hover:bg-yellow-600 w-full"
                   >
                     {wishlistLoading && currentWishlistId == product.id ? (
                       <i className="fa-solid fa-spinner fa-spin-pulse"></i>
@@ -142,7 +139,7 @@ export default function RecentProducts() {
                   </button>
                   <button
                     disabled={currentProductId === product.id && loading}
-                    className="btn showHide disabled:bg-gray-400"
+                    className="btn showHide disabled:bg-gray-400 bg-green-600 dark:bg-yellow-500 text-white dark:text-gray-900 hover:bg-green-700 dark:hover:bg-yellow-600"
                     onClick={() => addProduct(product.id)}
                   >
                     {currentProductId === product.id && loading ? (
@@ -157,7 +154,7 @@ export default function RecentProducts() {
           })}
         </div>
       ) : (
-        <div className="h-screen flex justify-center items-center">
+        <div className="h-screen flex justify-center items-center dark:bg-gray-900">
           <LoadingScreen />
         </div>
       )}

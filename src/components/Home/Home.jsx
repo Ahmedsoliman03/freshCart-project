@@ -11,7 +11,7 @@ export default function Home(props) {
   let { counter, handleCounter } = useContext(CounterContext);
   return (
     <>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden dark:bg-gray-900">
         <Helmet>
           <title>Home</title>
         </Helmet>

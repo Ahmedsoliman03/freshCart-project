@@ -9,10 +9,9 @@ export default function Layout() {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto my-8 py-6">
+      <div className="container mx-auto my-8 py-6 dark:bg-gray-900">
         <Outlet></Outlet>
       </div>
-
       <Footer />
     </>
   );

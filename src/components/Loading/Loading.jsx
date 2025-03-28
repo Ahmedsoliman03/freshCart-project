@@ -13,7 +13,7 @@ export default function LoadingScreen() {
 
   return (
     <>
-      <div className="sweet-loading text-red-900">
+      <div className="sweet-loading text-red-900 dark:text-yellow-400">
         <button onClick={() => setLoading(!loading)}> </button>
         <input
           value={color}
@@ -27,6 +27,7 @@ export default function LoadingScreen() {
           aria-label="Loading Spinner"
           data-testid="loader"
           color="green"
+          className="dark:text-yellow-400"
         />
       </div>
     </>

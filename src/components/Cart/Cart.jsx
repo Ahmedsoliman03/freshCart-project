@@ -88,10 +88,10 @@ export default function Cart() {
             Shopping Cart
           </h2>
           <div className="flex flex-wrap justify-between w-[50%] mx-auto flex-col items-center md:flex-row">
-            <h3 className="text-lg font-light text-slate-600 py-5 text-center">
+            <h3 className="text-lg font-light text-slate-600 dark:text-gray-300 py-5 text-center">
               Total Cart Price : {cartItems?.totalCartPrice} EGP
             </h3>
-            <h3 className="text-lg font-light text-slate-600 py-5 text-center">
+            <h3 className="text-lg font-light text-slate-600 dark:text-gray-300 py-5 text-center">
               Number of products : {cartItems?.products.length}
             </h3>
             <div className=" flex justify-start gap-2 w-full m-3">
@@ -115,8 +115,8 @@ export default function Cart() {
             </div>
           </div>
 
-          <table className="w-3/4 my-1 mx-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <table className="w-3/4 my-1 mx-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-300">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800 dark:text-gray-300">
               <tr>
                 <th scope="col" className="px-16 py-3">
                   <span className="sr-only">Image</span>
@@ -140,7 +140,7 @@ export default function Cart() {
                 return (
                   <tr
                     key={index}
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    className="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
                   >
                     <td className="p-4">
                       <img
@@ -149,7 +149,7 @@ export default function Cart() {
                         alt="Apple iMac"
                       />
                     </td>
-                    <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                    <td className="px-6 py-4 font-semibold text-gray-900 dark:text-gray-200">
                       {product.product.title}
                     </td>
                     <td className="px-6 py-4">
@@ -161,7 +161,7 @@ export default function Cart() {
                               product.count - 1
                             )
                           }
-                          className="inline-flex items-center justify-center p-1 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                          className="inline-flex items-center justify-center p-1 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                           type="button"
                         >
                           <span className="sr-only">Quantity button</span>
@@ -196,7 +196,7 @@ export default function Cart() {
                               product.count + 1
                             )
                           }
-                          className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                          className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                           type="button"
                         >
                           <span className="sr-only">Quantity button</span>
@@ -218,7 +218,7 @@ export default function Cart() {
                         </button>
                       </div>
                     </td>
-                    <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                    <td className="px-6 py-4 font-semibold text-gray-900 dark:text-gray-200">
                       <span className="whitespace-nowrap">
                         {product.price} EGP
                       </span>
@@ -226,7 +226,7 @@ export default function Cart() {
                     <td className="px-6 py-4">
                       <span
                         onClick={() => deleteItemFromCart(product.product.id)}
-                        className="font-medium text-red-600 dark:text-red-500 cursor-pointer"
+                        className="font-medium text-red-600 dark:text-yellow-400 cursor-pointer"
                       >
                         {deleteLoading &&
                         currentProduct == product.product.id ? (

@@ -66,20 +66,20 @@ export default function CategoriesSlider() {
 
   return (
     <>
-      <div className="py-5">
-        <h2 className="py-4 text-green-600 dark:text-green-400 text-center font-semibold text-3xl ">
+      <div className="py-5 dark:bg-gray-900">
+        <h2 className="py-4 text-green-600 dark:text-yellow-400 text-center font-semibold text-3xl">
           Shop Popular Categories
         </h2>
         <Slider {...settings}>
           {categories.map((category, index) => {
             return (
-              <div key={index}>
+              <div key={index} className="dark:bg-gray-800 dark:hover:bg-gray-700">
                 <img
                   className="w-full h-[200px]"
                   src={category.image}
                   alt={category.name}
                 />
-                <h2 className="font-light mt-2">{category.name}</h2>
+                <h2 className="font-light mt-2 dark:text-gray-300">{category.name}</h2>
               </div>
             );
           })}
