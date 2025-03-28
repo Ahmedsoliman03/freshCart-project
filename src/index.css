@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.row{
+    @apply flex flex-wrap px-4 py-8 items-center gap-y-4
+}
+.btn{
+    @apply bg-green-600 px-4 py-2 w-full rounded-lg text-white mt-2
+}
+.product .showHide{
+    transition: transform 1s, opacity 1s;
+    transform: translateY(100%);
+    opacity: 0;
+}
+.product:hover .btn{
+opacity: 1;
+transform: translateY(0%);
+}
+.brand-style:hover{
+    box-shadow: 1px 1px 10px #4fa74f;
+    transition: all .5s;
+    cursor: pointer;
+}
+.active{
+    color: #027d02;
+    font-weight: bold;
+}
