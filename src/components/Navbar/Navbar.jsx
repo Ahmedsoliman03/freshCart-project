@@ -42,7 +42,7 @@ export default function Navbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  let navigate = useNavigate();
+  let navigate = useNavigate(); 
   function logOut() {
     localStorage.removeItem("userToken");
     setUserLogin(null);
@@ -51,7 +51,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-gray-100 dark:bg-gray-900 static lg:fixed top-0 right-0 left-0 z-50">
+      <nav className="bg-green-600 dark:bg-gray-900 static lg:fixed top-0 right-0 left-0 z-50">
         <div className="container mx-auto py-1 flex-col lg:flex-row flex justify-between items-center">
           <div className="flex justify-between items-center w-full lg:w-auto">
             <NavLink className="flex mx-2" to="">
