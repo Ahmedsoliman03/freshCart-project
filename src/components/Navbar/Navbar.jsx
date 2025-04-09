@@ -42,7 +42,7 @@ export default function Navbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  let navigate = useNavigate(); 
+  let navigate = useNavigate();
   function logOut() {
     localStorage.removeItem("userToken");
     setUserLogin(null);
@@ -51,7 +51,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-green-600 dark:bg-gray-900 static lg:fixed top-0 right-0 left-0 z-50">
+      <nav className=" dark:bg-gray-900 static lg:fixed top-0 right-0 left-0 z-50">
         <div className="container mx-auto py-1 flex-col lg:flex-row flex justify-between items-center">
           <div className="flex justify-between items-center w-full lg:w-auto">
             <NavLink className="flex mx-2" to="">
@@ -197,14 +197,21 @@ export default function Navbar() {
               )}
               {userLogin ? (
                 <>
-                  <li className='py-2'>
-                    <NavLink to={'/cart'} className='mx-2 relative text-lg text-slate-900 dark:text-gray-200 font-light cursor-pointer'>
+                  <li className="py-2">
+                    <NavLink
+                      to={"/cart"}
+                      className="mx-2 relative text-lg text-slate-900 dark:text-gray-200 font-light cursor-pointer"
+                    >
                       <i class="fa-solid fa-cart-shopping text-2xl"></i>
-                      <span className='bg-green-600 dark:bg-yellow-500 text-white dark:text-gray-900 px-1 absolute text-xs top-[-3px] right-[-5px] rounded-2xl'>{cart?.numOfCartItems}</span>
+                      <span className="bg-green-600 dark:bg-yellow-500 text-white dark:text-gray-900 px-1 absolute text-xs top-[-3px] right-[-5px] rounded-2xl">
+                        {cart?.numOfCartItems}
+                      </span>
                     </NavLink>
                   </li>
-                  <li onClick={logOut} className='py-2'>
-                    <span className='mx-2 text-lg text-slate-900 dark:text-gray-200 font-light cursor-pointer'>Logout</span>
+                  <li onClick={logOut} className="py-2">
+                    <span className="mx-2 text-lg text-slate-900 dark:text-gray-200 font-light cursor-pointer">
+                      Logout
+                    </span>
                   </li>
                 </>
               ) : (
