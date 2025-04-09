@@ -225,19 +225,17 @@ export default function Navbar() {
                 <i className="fab fa-twitter mx-2 dark:text-gray-200"></i>
               </li>
               <li>
-                <label className="inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    className="sr-only peer"
-                    onChange={handleThemeSwitch}
-                    checked={theme === "dark"}
-                  />
-                  <div
-                    className={`relative w-11 h-6 bg-gray-200 outline-none peer-focus:ring-green-300 dark:peer-focus:ring-yellow-500
-              rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full border-none after:content-['']
-                after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600 dark:peer-checked:bg-yellow-500`}
-                  ></div>
-                </label>
+                <button
+                  onClick={handleThemeSwitch}
+                  className="flex items-center justify-center w-11 h-11 rounded-full transition-colors duration-300"
+                  aria-label="Toggle Theme"
+                >
+                  {theme === "dark" ? (
+                    <i className="fa-solid fa-sun text-white "></i>
+                  ) : (
+                    <i className="fa-solid fa-moon"></i>
+                  )}
+                </button>
               </li>
             </ul>
           </div>
