@@ -15,10 +15,10 @@ export default function LoadingScreen() {
     <>
       <div className="sweet-loading text-red-900 dark:text-yellow-400">
         <button onClick={() => setLoading(!loading)}> </button>
-        <input
+        {/* <input
           value={color}
           onChange={(input) => setColor(input.target.value)}
-        />
+        /> */}
 
         <DotLoader
           loading={loading}

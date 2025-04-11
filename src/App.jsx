@@ -129,10 +129,10 @@ let routing = createBrowserRouter([
 function App() {
   return (
     <>
-      <div className="dark:bg-black">
+      <div>
         <CartContextProvider>
           <RouterProvider router={routing}></RouterProvider>
-        <ReactQueryDevtools initialIsOpen="false" />
+          <ReactQueryDevtools initialIsOpen="false" />
         </CartContextProvider>
       </div>
     </>
