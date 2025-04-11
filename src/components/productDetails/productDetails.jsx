@@ -217,7 +217,7 @@ export default function ProductDetails() {
                       wishlistLoading && currentWishlistId == product.id
                     }
                     onClick={() => handleAddToWishlist(product._id)}
-                    className="disabled:bg-gray-400 mt-2 p-2 rounded-lg bg-yellow-200  text-black hover:bg-yellow-200 w-full"
+                    className="btn disabled:bg-gray-400 bg-green-600 dark:bg-yellow-500 text-white dark:text-gray-900 hover:bg-green-700 dark:hover:bg-yellow-600 mt-2"
                   >
                     {wishlistLoading && currentWishlistId == product.id ? (
                       <i className="fa-solid fa-spinner fa-spin-pulse"></i>

@@ -141,7 +141,11 @@ export default function ProductDetails() {
               {productDetails?.images?.map((image) => {
                 return (
                   <div>
-                    <img src={image} alt={productDetails?.title} className="dark:brightness-90" />
+                    <img
+                      src={image}
+                      alt={productDetails?.title}
+                      className="dark:brightness-90"
+                    />
                   </div>
                 );
               })}
@@ -183,7 +187,9 @@ export default function ProductDetails() {
       )}
       <div className="row dark:bg-gray-900">
         <div className="w-full p-4 sliderDetails2">
-          <h2 className="text-xl font-semibold mb-4 dark:text-white">Related Products</h2>
+          <h2 className="text-xl font-semibold mb-4 dark:text-white">
+            Related Products
+          </h2>
           <Slider {...settings2}>
             {relatedProduct.map((product, index) => {
               return (
@@ -218,7 +224,7 @@ export default function ProductDetails() {
                       wishlistLoading && currentWishlistId == product.id
                     }
                     onClick={() => handleAddToWishlist(product._id)}
-                    className="disabled:bg-gray-400 mt-2 p-2 rounded-lg bg-yellow-200 dark:bg-yellow-500 text-black dark:text-gray-900 hover:bg-yellow-300 dark:hover:bg-yellow-600 w-full"
+                    className="btn disabled:bg-gray-400 bg-green-600 dark:bg-yellow-500 text-white dark:text-gray-900 hover:bg-green-700 dark:hover:bg-yellow-600 mt-2"
                   >
                     {wishlistLoading && currentWishlistId == product.id ? (
                       <i className="fa-solid fa-spinner fa-spin-pulse"></i>
@@ -243,7 +249,7 @@ export default function ProductDetails() {
           </Slider>
         </div>
       </div>
-       {/* {isLoading ? (
+      {/* {isLoading ? (
         <div className="row">
           <div className="w-full  p-4">
             <Slider {...settings2}>
