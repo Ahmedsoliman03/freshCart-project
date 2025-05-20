@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import style from "./Login.module.css";
+import { useContext, useState } from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,7 +18,7 @@ export default function Login() {
     let { data } = await axios
       .post(`https://ecommerce.routemisr.com/api/v1/auth/signin`, formik)
       .then((response) => {
-        if ((response.data.message = "succcess")) {
+        if ((response.data.message == "succcess")) {
           navigate("/");
           setLoading(false);
           localStorage.setItem("userToken", response.data.token);
